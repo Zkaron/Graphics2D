@@ -1,7 +1,6 @@
 package Testing.Filling;
 
 import Core.MyJFrame;
-import Filling.BoundaryFill;
 import Lines.AbstractLine;
 import Lines.BresenhamLine;
 
@@ -14,11 +13,11 @@ import java.awt.image.BufferedImage;
 /**
  * Created by Erik on 7/6/2017.
  */
-public class BoundaryFillTest extends MyJFrame {
+public class FloodFillTest extends MyJFrame {
     private JPanel panel;
     private BufferedImage buffImage;
     private Point clickedPoint;
-    private BoundaryFill boundaryFill;
+    private Filling.FloodFill boundaryFill;
 
     private Figures.Rectangle rect;
     private AbstractLine line;
@@ -26,7 +25,7 @@ public class BoundaryFillTest extends MyJFrame {
     /**
      * Creates the Frame, panel and initializes variables
      */
-    public BoundaryFillTest() {
+    public FloodFillTest() {
         panel = new JPanel();
         add(panel);
         this.setVisible(true);  //is set visible again because a new element is added
@@ -36,7 +35,7 @@ public class BoundaryFillTest extends MyJFrame {
         g2.setColor(panel.getBackground());
         g2.fillRect(0, 0, panel.getWidth(), panel.getHeight());
 
-        boundaryFill = new BoundaryFill(panel, buffImage, g2);
+        boundaryFill = new Filling.FloodFill(panel, buffImage, g2);
 
         rect = new Figures.Rectangle(panel, g2);
         line = new BresenhamLine(panel, g2);
@@ -66,7 +65,7 @@ public class BoundaryFillTest extends MyJFrame {
     }
 
     public static void main(String[] args) {
-        BoundaryFillTest test = new BoundaryFillTest();
+        FloodFillTest test = new FloodFillTest();
         test.drawTestFigures();
     }
 }

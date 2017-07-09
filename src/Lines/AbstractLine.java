@@ -8,6 +8,7 @@ import Core.Pixel;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.LinkedList;
 
 /**
  * A class that manages the process of drawing a line,
@@ -180,5 +181,9 @@ public abstract class AbstractLine {
             lineWidth = 1;
         }
         this.lineWidth = lineWidth;
+    }
+
+    public void setGraphics(Graphics g) {
+        pixel.setGraphics(g);
     }
 }

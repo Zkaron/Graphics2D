@@ -9,7 +9,7 @@ import java.util.LinkedList;
  * Uses recursion to fill a shape, due to the nature of the java VM (virtual machine)
  * a linkedList (Stack) is used to simulate recursion and avoid VM overflowing
  */
-public class BoundaryFill {
+public class FloodFill {
     private int clickedBgColor;
     private LinkedList<Point> recursiveStack;
     private BufferedImage buffImage;
@@ -17,7 +17,7 @@ public class BoundaryFill {
 
     private Pixel pixel;
 
-    public BoundaryFill(Container context, BufferedImage image, Graphics g2) {
+    public FloodFill(Container context, BufferedImage image, Graphics g2) {
         pixel = new Pixel();
         pixel.setContext(context);
         pixel.setGraphics(g2);
