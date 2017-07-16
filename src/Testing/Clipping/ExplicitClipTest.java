@@ -12,7 +12,6 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.util.Collections;
 import java.util.LinkedList;
 
 /**
