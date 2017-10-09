@@ -15,7 +15,7 @@ public class MidpointCircle extends AbstractCircle{
         pixel.setGraphics(g2);
     }
 
-    public void drawingMethod(Point pc, Point radius){
+    public void drawingMethod(){
         int x = 0;
         int y = (int)radius.getX();
         pixel.drawPixel((int)pc.getX() + x, (int)pc.getY() + y);

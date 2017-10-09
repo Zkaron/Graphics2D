@@ -15,7 +15,7 @@ public class PolarCoordsEllipse extends AbstractCircle{
     }
 
     @Override
-    public void drawingMethod(Point pc, Point radius){
+    public void drawingMethod(){
         double inc = (radius.getX() > radius.getY()) ? 1.0 / radius.getX() : 1.0 / radius.getY();
         for(double t = 0; t <= 2 * Math.PI + 0.1; t += inc) {
             double x = pc.getX() + radius.getX() * Math.cos(t);

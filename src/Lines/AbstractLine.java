@@ -5,9 +5,9 @@ package Lines;
  */
 
 import Core.Pixel;
+import Transformations.Scale;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
 /**
@@ -21,11 +21,18 @@ public abstract class AbstractLine {
     protected boolean[] mask;
     protected int lineWidth;
     protected double m;
+    protected double scaleWidth;
+    protected double scaleHeight;
+
+    protected Point p0;
+    protected Point p1;
 
     public AbstractLine() {
         pixel = new Pixel();
         setLineWidth(1);
         setLineType((byte)0);
+        scaleWidth = 1.0;
+        scaleHeight = 1.0;
     }
 
     /**
@@ -35,11 +42,21 @@ public abstract class AbstractLine {
      * @param p1 the origin 2D point
      */
     public void drawLine(Point p0, Point p1) {
+        this.p0 = new Point(p0);
+        this.p1 = new Point(p1);
+
+       //Scale the points before drawing
+        scale();
+
         //Obtain the pendent
-        setPendent(p0, p1);
+        setPendent();
 
         //draw the line
-        drawingMethod(p0, p1);
+        drawingMethod();
+    }
+
+    public void drawRectangle(Point p0, Point p1) {
+        drawLine(p0, p1);
     }
 
     /**
@@ -47,18 +64,14 @@ public abstract class AbstractLine {
      * the line.
      * It's main purpose is to offer flexibility to the implementer
      * and incite the use of polymorphism.
-     * @param p0 the origin 2D point
-     * @param p1 the destine 2D point
      */
-    public abstract void drawingMethod(Point p0, Point p1);
+    public abstract void drawingMethod();
 
     /**
      * Calculates the pendent of the line, useful for drawing lines
      * with width.
-     * @param p0 the origin 2D point
-     * @param p1 the destine 2D point
      */
-    private void setPendent(Point p0, Point p1) {
+    private void setPendent() {
         double x0tmp = p0.getX(), x1tmp = p1.getX(), y0tmp = p0.getY(), y1tmp = p1.getY();
         if(p1.getY() - p0.getY() == 0) {
             double tmp = x0tmp;
@@ -153,6 +166,19 @@ public abstract class AbstractLine {
                 }
                 break;
         }
+    }
+
+    protected void scale() {
+        LinkedList<Point> scaledPoints;
+        Scale scale = new Scale();
+        scaledPoints = scale.scale(p0, p1, scaleWidth, scaleHeight);
+        p0 = scaledPoints.getFirst();
+        p1 = scaledPoints.getLast();
+    }
+
+    public void setScale(double width, double height) {
+        this.scaleWidth = width;
+        this.scaleHeight = height;
     }
 
     public byte getLineType() {

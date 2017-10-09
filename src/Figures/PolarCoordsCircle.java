@@ -15,7 +15,7 @@ public class PolarCoordsCircle extends AbstractCircle {
         pixel.setGraphics(g2);
     }
 
-    public void drawingMethod(Point pc, Point radius){
+    public void drawingMethod(){
         for(double t = 0; t <= 2 * Math.PI; t = t + 0.01) {
             double x = pc.getX() + radius.getX() * Math.cos(t);
             double y = pc.getY() + radius.getX() * Math.sin(t);

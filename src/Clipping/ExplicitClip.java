@@ -1,7 +1,6 @@
 package Clipping;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
 /**
@@ -105,7 +104,7 @@ public class ExplicitClip {
                 x_i = (int)points.get(i).getX() + divisionValue;
                 y_i = top;
             }
-
+            // --------------End of the first Point------------------
             // --------------For the second Point------------------
             int x_j = -1, y_j = -1;
             if (regionCodes[1].charAt(3) == '1') { //left
@@ -140,7 +139,7 @@ public class ExplicitClip {
                 x_j = (int)points.get(j).getX() + divisionValue;
                 y_j = top;
             }
-
+            // --------------End of the second Point------------------
 
             if(x_i != -1 || y_i != -1) {
                 points.get(i).setLocation(new Point(x_i, y_i));

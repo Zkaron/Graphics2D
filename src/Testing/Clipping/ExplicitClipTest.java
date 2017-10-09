@@ -72,6 +72,7 @@ public class ExplicitClipTest extends MyJFrame {
     }
 
     public void drawSomethingCool() {
+        line.setLineWidth(5);
         for(int p0 = 0, p1 = 1; p1 < linePointsVector.size(); p0 += 2, p1 += 2){
             line.drawLine(linePointsVector.get(p0), linePointsVector.get(p1));
         }

@@ -15,7 +15,7 @@ public class SimetricCircle extends AbstractCircle {
         pixel.setGraphics(g2);
     }
 
-    public void drawingMethod(Point pc, Point radius){
+    public void drawingMethod(){
         int x, y;
         int r2 = (int)radius.getX() * (int)radius.getX();
 

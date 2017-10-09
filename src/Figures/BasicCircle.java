@@ -19,7 +19,7 @@ public class BasicCircle extends AbstractCircle {
         pixel.setGraphics(g2);
     }
 
-    public void drawingMethod(Point pc, Point radius){
+    public void drawingMethod(){
         for(int x = (int)pc.getX() - (int)radius.getX(); x <= (int)pc.getX() + (int)radius.getX(); x++) {
             double y = pc.getY() + Math.sqrt((radius.getX() * radius.getX()) - Math.pow((x - pc.getX()), 2));
             drawWithWidth(x, (int)Math.round(y));

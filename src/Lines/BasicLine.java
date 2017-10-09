@@ -9,7 +9,7 @@ public class BasicLine extends AbstractLine {
         pixel.setGraphics(g2);
     }
   
-   public void drawingMethod(Point p0, Point p1) {
+   public void drawingMethod() {
        // y = mx + b
        //Primero detecta el largo de cada linea
        int xLength = getDifference((int)p0.getX(), (int)p1.getX());

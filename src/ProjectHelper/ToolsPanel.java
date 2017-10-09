@@ -1,4 +1,4 @@
-package Project;
+package ProjectHelper;
 
 import javax.swing.*;
 import java.awt.*;

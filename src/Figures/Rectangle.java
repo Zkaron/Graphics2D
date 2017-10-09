@@ -1,5 +1,6 @@
 package Figures;
 
+import Lines.AbstractLine;
 import Lines.BresenhamLine;
 import javax.swing.*;
 import java.awt.*;
@@ -7,7 +8,7 @@ import java.awt.*;
 /**
  * Created by erik on 4/19/17.
  */
-public class Rectangle {
+public class Rectangle extends AbstractLine {
     BresenhamLine line;
 
     public Rectangle(JPanel context) {
@@ -16,14 +17,6 @@ public class Rectangle {
 
     public Rectangle(JPanel context, Graphics g2) {
         line = new BresenhamLine(context, g2);
-    }
-
-    public void drawRectangle(Point p0, Point p1) {
-        line.drawLine(new Point((int)p0.getX(), (int)p0.getY()),
-                new Point((int)p1.getX(), (int)p0.getY()));
-        line.drawLine(new Point((int)p0.getX(), (int)p0.getY()), new Point((int)p0.getX(), (int)p1.getY()));
-        line.drawLine(new Point((int)p1.getX(), (int)p0.getY()), new Point((int)p1.getX(), (int)p1.getY()));
-        line.drawLine(new Point((int)p0.getX(), (int)p1.getY()), new Point((int)p1.getX(), (int)p1.getY()));
     }
 
     public void fillRectangle(Point p0, Point p1) {
@@ -42,4 +35,12 @@ public class Rectangle {
         line.setGraphics(g);
     }
 
+    @Override
+    public void drawingMethod() {
+        line.drawLine(new Point((int)p0.getX(), (int)p0.getY()),
+                new Point((int)p1.getX(), (int)p0.getY()));
+        line.drawLine(new Point((int)p0.getX(), (int)p0.getY()), new Point((int)p0.getX(), (int)p1.getY()));
+        line.drawLine(new Point((int)p1.getX(), (int)p0.getY()), new Point((int)p1.getX(), (int)p1.getY()));
+        line.drawLine(new Point((int)p0.getX(), (int)p1.getY()), new Point((int)p1.getX(), (int)p1.getY()));
+    }
 }

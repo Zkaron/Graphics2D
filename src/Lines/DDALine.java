@@ -12,7 +12,7 @@ public class DDALine extends AbstractLine {
         pixel.setGraphics(g2);
     }
     
-    public void drawingMethod(Point p0, Point p1){
+    public void drawingMethod(){
         dx = (int)p1.getX() - (int)p0.getX();
         dy = (int)p1.getY() - (int)p0.getY();
         int steps = (Math.abs(dx) > Math.abs(dy)) ? Math.abs(dx) : Math.abs(dy);

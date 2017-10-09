@@ -39,7 +39,7 @@ public class MidpointLineTest extends MyJFrame {
         line.drawLine(new Point(100, 300),new Point( 100, 350));
         line.drawLine(new Point(200, 350),new Point( 200, 300));
         panel.getGraphics().drawImage(buffImage, 0, 0, panel);
-    }
+}
 
     public static void main(String[] args) {
         MidpointLineTest test = new MidpointLineTest();

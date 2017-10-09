@@ -12,7 +12,7 @@ public class MidPointLine extends AbstractLine {
         pixel.setGraphics(g2);
     }
 
-    public void drawingMethod(Point p0, Point p1) {
+    public void drawingMethod() {
         int dx = ((int)p1.getX() - (int)p0.getX()) < 0 ? ((int)p0.getX() - (int)p1.getX()) : ((int)p1.getX() - (int)p0.getX());
         int dy = ((int)p1.getY() - (int)p0.getY()) < 0 ? ((int)p0.getY() - (int)p1.getY()) : ((int)p1.getY() - (int)p0.getY());
         int xinc = (p0.getX() < p1.getX()) ? 1 : -1;

@@ -1,11 +1,10 @@
-package Project;
+package ProjectHelper;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 
-import Core.MyJFrame;
 import Figures.AbstractCircle;
 import Figures.BasicCircle;
 import Figures.Rectangle;

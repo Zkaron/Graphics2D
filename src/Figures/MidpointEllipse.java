@@ -22,42 +22,50 @@ public class MidpointEllipse extends AbstractCircle {
     }
 
     @Override
-    public void drawingMethod(Point pc, Point radius) {
+    public void drawingMethod() {
         int x = 0;
-        int y = (int) radius.getY();
+        int y = radius.y;
+        int r1sq = radius.x * radius.x;
+        int r2sq = radius.y * radius.y;
+        double px = 0;
+        double py = 2 * r1sq * y;
 
-        int r1sq = (int)radius.getX() * (int)radius.getX();
-        int r2sq = (int)radius.getY() * (int)radius.getY();
+        drawWithWidth(pc.x + x, pc.y + y);
+        drawWithWidth(pc.x - x, pc.y + y);
+        drawWithWidth(pc.x + x, pc.y - y);
+        drawWithWidth(pc.x - x, pc.y - y);
 
-        double p = r2sq - (radius.getY() * r1sq) +(0.25 * r1sq);
-
-        while((2 * r2sq * x) <= (2 * r1sq * y)) {
-            drawWithWidth((int)pc.getX() + x, (int)pc.getY() + y);
-            drawWithWidth((int)pc.getX() + x, (int)pc.getY() - y);
-            drawWithWidth((int)pc.getX() - x, (int)pc.getY() + y);
-            drawWithWidth((int)pc.getX() - x, (int)pc.getY() - y);
+        double p = r2sq - (r1sq * radius.y) + (0.25 * r1sq);
+        while(px < py) {
             x++;
-            if(p <= 0) {
-                p +=(2 * x * r2sq) + r2sq;
+            px += 2 * r2sq;
+            if(p < 0) {
+                p += r2sq + px;
             } else {
                 y--;
-                p +=(2 * x * r2sq) + r2sq - (2 * r1sq * y);
+                py -= 2 * r1sq;
+                p += r2sq + px - py;
             }
+            drawWithWidth(pc.x + x, pc.y + y);
+            drawWithWidth(pc.x - x, pc.y + y);
+            drawWithWidth(pc.x + x, pc.y - y);
+            drawWithWidth(pc.x - x, pc.y - y);
         }
-        p = r2sq * Math.pow(x + 0.5, 2)
-                + r1sq * Math.pow(y - 1, 2) - r1sq * r2sq;
+        p = r2sq * Math.pow(x + 0.5, 2) + r1sq * Math.pow(y - 1, 2) - r1sq * r2sq;
         while (y > 0) {
             y--;
-            if(p <= 0) {
-                x++;
-                p += (2 * x * r2sq) - (2 * r1sq * y) + r1sq;
+            py -= 2 * r1sq;
+            if(p > 0) {
+                p += r1sq - py;
             } else {
-                p -= (2 * y * r1sq) + r1sq;
+                x++;
+                px += 2 * r2sq;
+                p += r1sq - py + px;
             }
-            drawWithWidth((int)pc.getX() + x, (int)pc.getY() + y);
-            drawWithWidth((int)pc.getX() + x, (int)pc.getY() - y);
-            drawWithWidth((int)pc.getX() - x, (int)pc.getY() + y);
-            drawWithWidth((int)pc.getX() - x, (int)pc.getY() - y);
+            drawWithWidth(pc.x + x, pc.y + y);
+            drawWithWidth(pc.x - x, pc.y + y);
+            drawWithWidth(pc.x + x, pc.y - y);
+            drawWithWidth(pc.x - x, pc.y - y);
         }
     }
 }

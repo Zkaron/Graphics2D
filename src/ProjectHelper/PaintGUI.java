@@ -1,11 +1,9 @@
-package Project;
+package ProjectHelper;
 
 import Core.MyJFrame;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * Created by erik on 4/26/17.

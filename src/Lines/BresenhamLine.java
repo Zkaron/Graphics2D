@@ -42,7 +42,7 @@ public class BresenhamLine extends AbstractLine {
      * @param p1 the destine 2D point
      */
     @Override
-    public void drawingMethod(Point p0, Point p1) {
+    public void drawingMethod() {
         int x0 = (int)Math.round(p0.getX());
         int y0 = (int)Math.round(p0.getY());
         int x1 = (int)Math.round(p1.getX());

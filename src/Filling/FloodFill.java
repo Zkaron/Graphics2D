@@ -69,4 +69,12 @@ public class FloodFill {
             System.out.println("Selected same color, doing nothing");
         }
     }
+
+    public Pixel getPixel() {
+        return pixel;
+    }
+
+    public void setPixel(Pixel pixel) {
+        this.pixel = pixel;
+    }
 }
