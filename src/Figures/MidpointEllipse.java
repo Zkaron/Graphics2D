@@ -12,8 +12,8 @@ import javax.swing.*;
  * Algorithm used is in the following text:
  * Univ. Michoacana de San Nicolas de Hgo.
  * Facultad de Ingenieria Electrica
- * Notas de Graflcacion
- * Jise Antonio Camarena Ibarrola
+ * Notas de Graficacion
+ * Jose Antonio Camarena Ibarrola
  * Marzo de 2010
  */
 public class MidpointEllipse extends AbstractCircle {

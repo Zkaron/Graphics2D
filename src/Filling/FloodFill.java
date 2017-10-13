@@ -17,6 +17,15 @@ public class FloodFill {
 
     private Pixel pixel;
 
+    public FloodFill(Container context, BufferedImage image) {
+        pixel = new Pixel();
+        pixel.setContext(context);
+        buffImage = image;
+        recursiveStack = new LinkedList<>();
+        containerWidth = context.getWidth();
+        containerHeight = context.getHeight();
+    }
+
     public FloodFill(Container context, BufferedImage image, Graphics g2) {
         pixel = new Pixel();
         pixel.setContext(context);
@@ -68,6 +77,10 @@ public class FloodFill {
         } else {  //print that the same color was selected
             System.out.println("Selected same color, doing nothing");
         }
+    }
+
+    public void setGraphics(Graphics g2) {
+        pixel.setGraphics(g2);
     }
 
     public Pixel getPixel() {

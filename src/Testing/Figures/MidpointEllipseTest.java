@@ -47,7 +47,7 @@ public class MidpointEllipseTest extends MyJFrame {
         circlePointsVector.add(new Point(300, 300));
         circlePointsVector.add(new Point(200, 200));
         circlePointsVector.add(new Point(300, 300));
-        circlePointsVector.add(new Point(250, 250));
+        circlePointsVector.add(new Point(350, 300));
     }
 
     public void paint() {
