@@ -4,6 +4,7 @@ import Core.MyJFrame;
 import Core.Pixel;
 
 import java.awt.*;
+import javax.swing.*;
 
 /**
  * Created by erik on 5/1/17.
@@ -16,6 +17,12 @@ import java.awt.*;
  * Marzo de 2010
  */
 public class MidpointEllipse extends AbstractCircle {
+    public MidpointEllipse(JPanel context) {
+        super();
+        pixel.setContext(context);
+        pixel.setGraphics(context.getGraphics());
+    }
+
     public MidpointEllipse(Container context, Graphics g2) {
         pixel.setContext(context);
         pixel.setGraphics(g2);

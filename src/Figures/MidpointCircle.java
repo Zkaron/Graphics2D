@@ -10,6 +10,12 @@ import java.awt.*;
  * Created by erik on 4/24/17.
  */
 public class MidpointCircle extends AbstractCircle{
+    public MidpointCircle(JPanel context) {
+        super();
+        pixel.setContext(context);
+        pixel.setGraphics(context.getGraphics());
+    }
+
     public MidpointCircle(JPanel context, Graphics g2) {
         pixel.setContext(context);
         pixel.setGraphics(g2);

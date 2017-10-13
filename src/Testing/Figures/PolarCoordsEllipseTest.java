@@ -7,15 +7,20 @@ import Figures.PolarCoordsEllipse;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.LinkedList;
 
 /**
  * Created by Erik on 7/6/2017.
  */
 public class PolarCoordsEllipseTest extends MyJFrame {
-    private final String FRAME_TITLE = "Midpoint Circle";
+    private final String FRAME_TITLE = "Polar Coords Ellipse";
+    public LinkedList<Point> circlePointsVector;
     private JPanel panel;
-    private BufferedImage buffImage;
+    private BufferedImage offScreen;
     private AbstractCircle circle;
+    private int imageWidth;
+    private int imageHeight;
+
 
     public PolarCoordsEllipseTest() {
         setTitle(FRAME_TITLE);
@@ -23,22 +28,56 @@ public class PolarCoordsEllipseTest extends MyJFrame {
         panel = new JPanel();
         add(panel);
         this.setVisible(true);  //is set visible again because a new element has been added
+        circlePointsVector = new LinkedList<>();
 
-        buffImage = new BufferedImage(panel.getWidth(), panel.getHeight(), BufferedImage.TYPE_INT_RGB);
-        Graphics g2 = buffImage.createGraphics();
-        g2.setColor(panel.getBackground());
-        g2.fillRect(0, 0, panel.getWidth(), panel.getHeight());
-
-        circle = new PolarCoordsEllipse(panel, g2);
+        setCoolPoints();
     }
 
     public void drawSomethingCool() {
-        circle.drawCircle(new Point(200, 300), new Point(100, 200));
-        circle.drawCircle(new Point(200, 300), new Point(50, 200));
-        circle.drawCircle(new Point(200, 300), new Point(200, 200));
-        circle.drawCircle(new Point(200, 300), new Point(200, 100));
-        circle.drawCircle(new Point(200, 300), new Point(150, 200));
-        panel.getGraphics().drawImage(buffImage, 0, 0, panel);
+        for(int p0 = 0, p1 = 1; p1 < circlePointsVector.size(); p0 += 2, p1 += 2){
+            circle.drawCircle(circlePointsVector.get(p0), circlePointsVector.get(p1));
+        }
+    }
+
+    public void setCoolPoints() {
+        circlePointsVector.add(new Point(300, 300));
+        circlePointsVector.add(new Point(100, 100));
+        circlePointsVector.add(new Point(300, 300));
+        circlePointsVector.add(new Point(50, 50));
+        circlePointsVector.add(new Point(300, 300));
+        circlePointsVector.add(new Point(200, 200));
+        circlePointsVector.add(new Point(300, 300));
+        circlePointsVector.add(new Point(250, 250));
+    }
+
+    public void paint() {
+        Dimension d = panel.getSize();
+        if((offScreen == null) || (d.width != imageWidth)
+                ||(d.height != imageHeight)) {
+            if(d.width < 1 || d.height < 1) return;
+
+            offScreen = new BufferedImage(panel.getWidth(),
+                    panel.getHeight(), BufferedImage.TYPE_INT_RGB);
+            imageWidth = d.width;
+            imageHeight = d.height;
+            circle = new PolarCoordsEllipse(panel);
+        }   //check if the screen hasn't been drawn or the window was resided
+
+        Graphics offGraphics = offScreen.createGraphics();
+        clear(offGraphics);
+        circle.setGraphics(offGraphics);
+        drawSomethingCool();
+        Graphics panelGraphics = panel.getGraphics();
+        panelGraphics.drawImage(offScreen, 0, 0, panel);
+    }
+
+    public void paint(Graphics g) {
+        paint();
+    }
+
+    private void clear(Graphics g) {
+        g.setColor(panel.getBackground());
+        g.fillRect(0, 0, panel.getWidth(), panel.getHeight());
     }
 
     public static void main(String[] args) {
