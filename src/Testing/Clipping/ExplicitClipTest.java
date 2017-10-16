@@ -25,7 +25,7 @@ public class ExplicitClipTest extends MyJFrame {
     private JPanel panel;
     private BufferedImage offScreen;
     private AbstractLine line;
-    private Figures.Rectangle rect;
+    private Rectangle rect;
     private int imageWidth;
     private int imageHeight;
 

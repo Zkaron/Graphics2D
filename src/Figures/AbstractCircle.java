@@ -38,10 +38,41 @@ public abstract class AbstractCircle {
     }
 
     protected void drawWithWidth(int xc, int yc) {
-        for(int i = 0; i < lineWidth; i++) {
-            xc = i % 2 == 0 ? xc + i : xc - i;
-            yc = i % 2 == 0 ? yc + i : yc - i;
+        int original_xc = xc;
+        int original_yc = yc;
+
+        int leftWidth = lineWidth / 2;
+        int rightWidth = lineWidth / 2;
+
+        if(lineWidth % 2 == 1) {
+            leftWidth = lineWidth / 2;
+            rightWidth = (lineWidth / 2) + 1;
+        }
+
+        for(int i = 0; i < leftWidth; i++) {
+            xc = original_xc + i;
             pixel.drawPixel(xc, yc);
+            for(int j = 0; j < leftWidth; j++) {
+                yc = original_yc + j;
+                pixel.drawPixel(xc, yc);
+            }
+            for(int j = 0; j < rightWidth; j++) {
+                yc = original_yc - j;
+                pixel.drawPixel(xc, yc);
+            }
+        }
+
+        for(int i = 0; i < leftWidth; i++) {
+            xc = original_xc - i;
+            pixel.drawPixel(xc, yc);
+            for(int j = 0; j < leftWidth; j++) {
+                yc = original_yc + j;
+                pixel.drawPixel(xc, yc);
+            }
+            for(int j = 0; j < rightWidth; j++) {
+                yc = original_yc - j;
+                pixel.drawPixel(xc, yc);
+            }
         }
     }
 

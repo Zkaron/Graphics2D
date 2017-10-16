@@ -17,7 +17,7 @@ public class MidpointEllipseTest extends MyJFrame {
     public LinkedList<Point> circlePointsVector;
     private JPanel panel;
     private BufferedImage offScreen;
-    private AbstractCircle circle;
+    private MidpointEllipse circle;
     private int imageWidth;
     private int imageHeight;
 
@@ -37,6 +37,10 @@ public class MidpointEllipseTest extends MyJFrame {
         for(int p0 = 0, p1 = 1; p1 < circlePointsVector.size(); p0 += 2, p1 += 2){
             circle.drawCircle(circlePointsVector.get(p0), circlePointsVector.get(p1));
         }
+//        circle.drawUpperHalfCircle(new Point(150, 150), new Point(100, 100));
+//        circle.drawLowerHalfCircle(new Point(350, 350), new Point(100, 100));
+//        circle.drawLeftHalfCircle(new Point(250, 100), new Point(100, 100));
+//        circle.drawRightHalfCircle(new Point(250, 400), new Point(100, 100));
     }
 
     public void setCoolPoints() {

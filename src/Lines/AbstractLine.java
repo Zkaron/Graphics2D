@@ -99,6 +99,10 @@ public abstract class AbstractLine {
         pixel.setPixelColor(color);
     }
 
+    public Color getColor() {
+        return pixel.getPixelColor();
+    }
+
     /**
      * With help of the pendent calculates the position of
      * each pixel when drawing lines with width.

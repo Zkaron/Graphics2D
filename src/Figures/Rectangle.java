@@ -37,10 +37,13 @@ public class Rectangle extends AbstractLine {
 
     @Override
     public void drawingMethod() {
+        line.setLineWidth(this.getLineWidth());
+//        line.setColor(this.getColor());
         line.drawLine(new Point((int)p0.getX(), (int)p0.getY()),
                 new Point((int)p1.getX(), (int)p0.getY()));
         line.drawLine(new Point((int)p0.getX(), (int)p0.getY()), new Point((int)p0.getX(), (int)p1.getY()));
         line.drawLine(new Point((int)p1.getX(), (int)p0.getY()), new Point((int)p1.getX(), (int)p1.getY()));
         line.drawLine(new Point((int)p0.getX(), (int)p1.getY()), new Point((int)p1.getX(), (int)p1.getY()));
     }
+
 }

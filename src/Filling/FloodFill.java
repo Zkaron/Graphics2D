@@ -1,6 +1,8 @@
 package Filling;
 
 import Core.Pixel;
+import Transformations.Scale;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
@@ -14,6 +16,8 @@ public class FloodFill {
     private LinkedList<Point> recursiveStack;
     private BufferedImage buffImage;
     private int containerWidth, containerHeight;
+    private Point selectedPoint;
+    private double scaleX, scaleY;
 
     private Pixel pixel;
 
@@ -24,6 +28,8 @@ public class FloodFill {
         recursiveStack = new LinkedList<>();
         containerWidth = context.getWidth();
         containerHeight = context.getHeight();
+        scaleX = 1;
+        scaleY = 1;
     }
 
     public FloodFill(Container context, BufferedImage image, Graphics g2) {
@@ -34,13 +40,15 @@ public class FloodFill {
         recursiveStack = new LinkedList<>();
         containerWidth = context.getWidth();
         containerHeight = context.getHeight();
+        scaleX = 1;
+        scaleY = 1;
     }
 
     /**
      * It just gets the color in RGB of the clicked point
      */
-    private void initFillVariables(Point clickedPoint) {
-        clickedBgColor = buffImage.getRGB((int)clickedPoint.getX(), (int)clickedPoint.getY());
+    private void initFillVariables() {
+        clickedBgColor = buffImage.getRGB((int)selectedPoint.getX(), (int)selectedPoint.getY());
     }
 
     /**
@@ -48,34 +56,39 @@ public class FloodFill {
      * and compares the color of each pixel to know where to paint
      */
     public void fill(Point clickedPoint) {
-        initFillVariables(clickedPoint);
-        if(!(clickedBgColor == pixel.getPixelColor().getRGB())) {  //if is the same color, do nothing
-            recursiveStack.push(clickedPoint);
+        selectedPoint = clickedPoint;
+        scale();
+        if (!(selectedPoint.getX() >= buffImage.getWidth() - 1 || selectedPoint.getY() >= buffImage.getHeight() - 1  //Check if the coordinate isn't out of bounds
+                || selectedPoint.getX() <= 0 || selectedPoint.getY() <= 0)) {
+            initFillVariables();
+            if (!(clickedBgColor == pixel.getPixelColor().getRGB())) {  //if is the same color, do nothing
+                recursiveStack.push(selectedPoint);
 
-            while (recursiveStack.size() != 0) {
-                Point p = recursiveStack.pop();
-                if (!(p.getX() >= containerWidth - 1 || p.getY() >= containerHeight - 1  //Check if the coordinate isn't out of bounds
-                        || p.getX() <= 0 || p.getY() <= 0)) {
-                    if (buffImage.getRGB((int) p.getX(), (int) p.getY() + 1) == clickedBgColor) {
-                        recursiveStack.add(new Point((int) p.getX(), (int) p.getY() + 1));
-                        pixel.drawPixel((int) p.getX(), (int) p.getY() + 1);
-                    }
-                    if (buffImage.getRGB((int) p.getX() + 1, (int) p.getY()) == clickedBgColor) {
-                        recursiveStack.add(new Point((int) p.getX() + 1, (int) p.getY()));
-                        pixel.drawPixel((int) p.getX() + 1, (int) p.getY());
-                    }
-                    if (buffImage.getRGB((int) p.getX(), (int) p.getY() - 1) == clickedBgColor) {
-                        recursiveStack.add(new Point((int) p.getX(), (int) p.getY() - 1));
-                        pixel.drawPixel((int) p.getX(), (int) p.getY() - 1);
-                    }
-                    if (buffImage.getRGB((int) p.getX() - 1, (int) p.getY()) == clickedBgColor) {
-                        recursiveStack.add(new Point((int) p.getX() - 1, (int) p.getY()));
-                        pixel.drawPixel((int) p.getX() - 1, (int) p.getY());
+                while (recursiveStack.size() != 0) {
+                    Point p = recursiveStack.pop();
+                    if (!(p.getX() >= buffImage.getWidth() - 1 || p.getY() >= buffImage.getHeight() - 1  //Check if the coordinate isn't out of bounds
+                            || p.getX() <= 0 || p.getY() <= 0)) {
+                        if (buffImage.getRGB((int) p.getX(), (int) p.getY() + 1) == clickedBgColor) {
+                            recursiveStack.add(new Point((int) p.getX(), (int) p.getY() + 1));
+                            pixel.drawPixel((int) p.getX(), (int) p.getY() + 1);
+                        }
+                        if (buffImage.getRGB((int) p.getX() + 1, (int) p.getY()) == clickedBgColor) {
+                            recursiveStack.add(new Point((int) p.getX() + 1, (int) p.getY()));
+                            pixel.drawPixel((int) p.getX() + 1, (int) p.getY());
+                        }
+                        if (buffImage.getRGB((int) p.getX(), (int) p.getY() - 1) == clickedBgColor) {
+                            recursiveStack.add(new Point((int) p.getX(), (int) p.getY() - 1));
+                            pixel.drawPixel((int) p.getX(), (int) p.getY() - 1);
+                        }
+                        if (buffImage.getRGB((int) p.getX() - 1, (int) p.getY()) == clickedBgColor) {
+                            recursiveStack.add(new Point((int) p.getX() - 1, (int) p.getY()));
+                            pixel.drawPixel((int) p.getX() - 1, (int) p.getY());
+                        }
                     }
                 }
+            } else {  //print that the same color was selected
+                System.out.println("Selected same color, doing nothing");
             }
-        } else {  //print that the same color was selected
-            System.out.println("Selected same color, doing nothing");
         }
     }
 
@@ -89,5 +102,19 @@ public class FloodFill {
 
     public void setPixel(Pixel pixel) {
         this.pixel = pixel;
+    }
+
+    public void setColor(Color color) {
+        pixel.setPixelColor(color);
+    }
+
+    private void scale() {
+        Scale scale = new Scale();
+        selectedPoint = scale.scale(selectedPoint, scaleX, scaleY);
+    }
+
+    public void setScale(double x, double y) {
+        scaleX = x;
+        scaleY = y;
     }
 }
