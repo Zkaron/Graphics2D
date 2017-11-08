@@ -4,11 +4,18 @@ import Core.MyJFrame;
 import Core.Pixel;
 
 import java.awt.*;
+import javax.swing.*;
 
 /**
  * Created by erik on 5/1/17.
  */
 public class PolarCoordsEllipse extends AbstractCircle{
+    public PolarCoordsEllipse(JPanel context) {
+        super();
+        pixel.setContext(context);
+        pixel.setGraphics(context.getGraphics());
+    }
+
     public PolarCoordsEllipse(Container context, Graphics g2) {
         pixel.setContext(context);
         pixel.setGraphics(g2);

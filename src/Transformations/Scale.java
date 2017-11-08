@@ -24,7 +24,7 @@ public class Scale {
      */
     public LinkedList<Point> scale(Point p0, Point p1, double scaleWidth, double scaleHeight) {
         LinkedList<Point> scaledPoint = new LinkedList<>();
-        if(scaleWidth != 1 && scaleHeight != 1) {
+        if(scaleWidth != 1 || scaleHeight != 1) {
             int startX = p0.x < p1.x ? p0.x : p1.x;
             int startY = p0.y < p1.y ? p0.y : p1.y;
 
@@ -38,6 +38,19 @@ public class Scale {
         }
         scaledPoint.add(p0);
         scaledPoint.add(p1);
+        return scaledPoint;
+    }
+
+    /**
+     * For single Point
+     * @param point
+     * @param scaleRatioX
+     * @param scaleRatioY
+     * @return
+     */
+    public Point scale(Point point, double scaleRatioX, double scaleRatioY) {
+        Point scaledPoint = new Point(point);
+        scaledPoint.setLocation(point.x * scaleRatioX, point.y * scaleRatioY);
         return scaledPoint;
     }
 }

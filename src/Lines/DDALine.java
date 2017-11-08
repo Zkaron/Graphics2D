@@ -7,11 +7,17 @@ public class DDALine extends AbstractLine {
     private int dx, dy;
     private float xinc, yinc;
 
+    public DDALine(Container context) {
+        super();
+        pixel.setContext(context);
+        pixel.setGraphics(context.getGraphics());
+    }
+
     public DDALine(JPanel context, Graphics g2) {
         pixel.setContext(context);
         pixel.setGraphics(g2);
     }
-    
+
     public void drawingMethod(){
         dx = (int)p1.getX() - (int)p0.getX();
         dy = (int)p1.getY() - (int)p0.getY();

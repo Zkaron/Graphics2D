@@ -31,7 +31,7 @@ public class Pixel {
      */
     public void drawPixel(int x, int y) {
         buffer.setRGB(0, 0, color.getRGB());
-        graPixel.drawImage(buffer, x, y, context);
+        graPixel.drawImage(buffer, x, y, null);
     }
 
     /**

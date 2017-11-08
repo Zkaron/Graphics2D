@@ -10,6 +10,12 @@ import java.awt.*;
  * Created by erik on 4/19/17.
  */
 public class SimetricCircle extends AbstractCircle {
+    public SimetricCircle(JPanel context) {
+        super();
+        pixel.setContext(context);
+        pixel.setGraphics(context.getGraphics());
+    }
+
     public SimetricCircle(JPanel context, Graphics g2) {
         pixel.setContext(context);
         pixel.setGraphics(g2);

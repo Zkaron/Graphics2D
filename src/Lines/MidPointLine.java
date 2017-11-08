@@ -2,11 +2,20 @@ package Lines;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.LinkedList;
+
 
 /**
  * Created by erik on 4/24/17.
  */
 public class MidPointLine extends AbstractLine {
+
+  public MidPointLine(Container context) {
+      super();
+      pixel.setContext(context);
+      pixel.setGraphics(context.getGraphics());
+  }
+
     public MidPointLine(JPanel context, Graphics g2) {
         pixel.setContext(context);
         pixel.setGraphics(g2);

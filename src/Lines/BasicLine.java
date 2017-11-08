@@ -4,17 +4,23 @@ import javax.swing.*;
 import java.awt.*;
 
 public class BasicLine extends AbstractLine {
+  public BasicLine(Container context) {
+      super();
+      pixel.setContext(context);
+      pixel.setGraphics(context.getGraphics());
+  }
+
     public BasicLine(JPanel context, Graphics g2) {
         pixel.setContext(context);
         pixel.setGraphics(g2);
     }
-  
+
    public void drawingMethod() {
        // y = mx + b
        //Primero detecta el largo de cada linea
        int xLength = getDifference((int)p0.getX(), (int)p1.getX());
        int yLength = getDifference((int)p0.getY(), (int)p1.getY());
-       
+
        //Decide si dibujar desde x o desde y
        if (xLength >= yLength) {
            if((int)p0.getX() > (int)p1.getX()) {
@@ -59,5 +65,5 @@ public class BasicLine extends AbstractLine {
    private int getDifference(int axis1, int axis2) {
        return Math.abs(axis1 - axis2);
    }
-   
+
 }

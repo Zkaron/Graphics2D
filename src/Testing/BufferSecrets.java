@@ -23,7 +23,7 @@ public class BufferSecrets extends MyJFrame {
     private BufferedImage buffBackground;
 
     private Pixel pixel;
-    private Figures.Rectangle rect;
+    private Rectangle rect;
     private AbstractLine line;
 
     public BufferSecrets() {

@@ -3,6 +3,7 @@ package Lines;
 import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.image.BufferedImage;
 
 /**
  * Created by erik on 4/2/17.
@@ -38,8 +39,6 @@ public class BresenhamLine extends AbstractLine {
      * Uses the bresenham's line algorithm to calculate the position of
      * each pixel, also uses the mask function to get different types
      * of lines
-     * @param p0 the origin 2D point
-     * @param p1 the destine 2D point
      */
     @Override
     public void drawingMethod() {
@@ -61,7 +60,7 @@ public class BresenhamLine extends AbstractLine {
             int B = (2 * dy) - (2 * dx);
             int pk = A - dx;
 
-            createMaskByType(dx);
+//            createMaskByType(dx);
             for(int xk = x0, i = 0, yk = y0; xk != x1; xk += xinc, i++) {
                 if (pk < 0) {
                     pk += A;
@@ -69,15 +68,15 @@ public class BresenhamLine extends AbstractLine {
                     yk += yinc;
                     pk += B;
                 }
-                if(mask[i]) {
+//                if(mask[i]) {
                     drawWithWidth(xk, yk);
-                }
+//                }
             }
         } else {
             int A = 2 * dx;
             int B = (2 * dx) - (2 * dy);
             double pk = A - dy;
-            createMaskByType(dy);
+//            createMaskByType(dy);
             for(int yk = y0, i = 0, xk = x0; yk != y1; yk += yinc, i++) {
                 if (pk < 0) {
                     pk += A;
@@ -85,9 +84,9 @@ public class BresenhamLine extends AbstractLine {
                     xk += xinc;
                     pk += B;
                 }
-                if (mask[i]) {
+//                if (mask[i]) {
                     drawWithWidth(xk, yk);
-                }
+//                }
             }
             drawWithWidth(x1, y1);
         }
